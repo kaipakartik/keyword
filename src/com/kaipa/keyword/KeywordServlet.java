@@ -1,6 +1,7 @@
 package com.kaipa.keyword;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,7 +23,8 @@ public class KeywordServlet extends HttpServlet {
 
 	public void process(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
-		String query = req.getParameter("q") == null?req.getParameter("query"): req.getParameter("q");
+		String query = req.getParameter("q") == null ? req
+				.getParameter("query") : req.getParameter("q");
 		if (query == null) {
 			resp.sendRedirect("http://www.google.com");
 			return;
@@ -33,9 +35,9 @@ public class KeywordServlet extends HttpServlet {
 			keyword.save();
 			resp.sendRedirect(keyword.getUrl());
 		} else {
-			resp.sendError(404, "Keyword not found");
+			resp.sendRedirect(String.format("/add.jsp?k=%s",
+					URLEncoder.encode(query, "UTF-8")));
 		}
-	
+
 	}
 }
-

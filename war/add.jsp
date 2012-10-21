@@ -9,19 +9,32 @@
 <html>
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>Hello App Engine</title>
+    <title>Add a keyword for a url here.</title>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script type="text/javascript">
-    	$(document).ready(function() {
-    		$("#key").focus();
-    	});
-    </script>
   </head>
 
   <body>
+  	<%
+  		String key = request.getParameter("k");
+  		if (key == null) {
+  			key = "";
+   	%>
+  			<script type="text/javascript">
+    			$(document).ready(function() {
+    				$("#key").focus();
+    			});
+    		</script>
+  	<%	} else { %>
+  			<script type="text/javascript">
+    			$(document).ready(function() {
+    				$("#url").focus();
+    			});
+    		</script>
+  	<%	}
+  	%>
   	<form action = "/add" type="post">
-  		Key <input type = "text" name="key" id="key" /> <br>
-  		Url <input type = "text" name="url" /> <br>
+  		Key <input type = "text" name="key" id="key" value="<%=key%>" /> <br>
+  		Url <input type = "text" name="url" id="url" /> <br>
   		<input type="submit" value="Submit">
   	</form>
   </body>

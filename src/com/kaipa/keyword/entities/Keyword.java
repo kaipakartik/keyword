@@ -14,18 +14,18 @@ public class Keyword {
 	String url;
 	String search;
 	long count;
-	
-	public Keyword() {}
 
-	public Keyword(String keyword, String url, String search,
-			long count) {
+	public Keyword() {
+	}
+
+	public Keyword(String keyword, String url, String search, long count) {
 		super();
 		this.keyword = keyword;
 		this.url = url;
 		this.search = search;
 		this.count = count;
 	}
-	
+
 	public Keyword(String keyword, String url) {
 		super();
 		this.keyword = keyword;
@@ -37,7 +37,7 @@ public class Keyword {
 	public void save() {
 		getService().put(this);
 	}
-	
+
 	public void incrementCount() {
 		count++;
 	}
@@ -45,7 +45,7 @@ public class Keyword {
 	public static Keyword find(String keyword) {
 		Objectify service = getService();
 		try {
-			return service.query(Keyword.class).filter("keyword", keyword).get();
+			return service.get(Keyword.class, keyword);
 		} catch (NotFoundException e) {
 			return null;
 		}
