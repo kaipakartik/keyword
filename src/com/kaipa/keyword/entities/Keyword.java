@@ -39,6 +39,7 @@ public class Keyword {
 	public void save() {
 		NamespaceManager.set(LoggedInUser.getUserId());
 		getService().put(this);
+		NamespaceManager.set("");
 	}
 
 	public void incrementCount() {
@@ -50,6 +51,7 @@ public class Keyword {
 		try {
 			NamespaceManager.set(LoggedInUser.getUserId());
 			Keyword keyword = service.get(Keyword.class, key);
+			NamespaceManager.set("");
 			return keyword;
 		} catch (NotFoundException e) {
 			try {
