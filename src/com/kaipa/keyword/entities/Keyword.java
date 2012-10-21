@@ -50,13 +50,14 @@ public class Keyword {
 		try {
 			NamespaceManager.set(LoggedInUser.getUserId());
 			Keyword keyword = service.get(Keyword.class, key);
-			if (keyword == null) {
-				NamespaceManager.set("");
-				keyword = service.get(Keyword.class, key);
-			}
 			return keyword;
 		} catch (NotFoundException e) {
-			return null;
+			try {
+				NamespaceManager.set("");
+				return service.get(Keyword.class, key);
+			} catch (NotFoundException e1) {
+				return null;
+			}
 		}
 	}
 

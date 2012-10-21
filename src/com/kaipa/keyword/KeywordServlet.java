@@ -38,6 +38,5 @@ public class KeywordServlet extends HttpServlet {
 			resp.sendRedirect(String.format("/add.jsp?k=%s",
 					URLEncoder.encode(query, "UTF-8")));
 		}
-
 	}
 }
