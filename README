@@ -8,4 +8,8 @@ The next time you want to access it all you do is hit m on your keyword site.
 
 An apt analogy is this is similar to the way you would use aliases on the unix terminal.
 
+For a working demo checkout http://kdogmatix.appspot.com
+and take a look at this URL
+http://kdogmatix.appspot.com/key?q=m
+
 This is the entire project for Google app engine.
