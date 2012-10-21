@@ -2,10 +2,12 @@ package com.kaipa.keyword.entities;
 
 import javax.persistence.Id;
 
+import com.google.appengine.api.NamespaceManager;
 import com.googlecode.objectify.NotFoundException;
 import com.googlecode.objectify.Objectify;
 import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.annotation.Cached;
+import com.kaipa.keyword.LoggedInUser;
 
 @Cached
 public class Keyword {
@@ -35,6 +37,7 @@ public class Keyword {
 	}
 
 	public void save() {
+		NamespaceManager.set(LoggedInUser.getUserId());
 		getService().put(this);
 	}
 
@@ -42,10 +45,16 @@ public class Keyword {
 		count++;
 	}
 
-	public static Keyword find(String keyword) {
+	public static Keyword find(String key) {
 		Objectify service = getService();
 		try {
-			return service.get(Keyword.class, keyword);
+			NamespaceManager.set(LoggedInUser.getUserId());
+			Keyword keyword = service.get(Keyword.class, key);
+			if (keyword == null) {
+				NamespaceManager.set("");
+				keyword = service.get(Keyword.class, key);
+			}
+			return keyword;
 		} catch (NotFoundException e) {
 			return null;
 		}
