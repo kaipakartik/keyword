@@ -45,6 +45,19 @@ public class Keyword {
 	public void incrementCount() {
 		count++;
 	}
+	
+	public static Keyword findForUser(String key) {
+		Objectify service = getService();
+		try {
+			NamespaceManager.set(LoggedInUser.getUserId());
+			Keyword keyword = service.get(Keyword.class, key);
+			NamespaceManager.set("");
+			return keyword;
+		} catch (NotFoundException e) {
+			NamespaceManager.set("");
+			return null;
+		}
+	}
 
 	public static Keyword find(String key) {
 		Objectify service = getService();

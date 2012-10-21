@@ -38,7 +38,7 @@ public class AddServlet extends HttpServlet {
 		// Save the keyword. Show a brief message, then redirect to the actual
 		// url.
 		// If a url mapping already exists don't do anything.
-		if (Keyword.find(key) == null) {
+		if (Keyword.findForUser(key) == null) {
 			new Keyword(key, url).save();
 			resp.getWriter().println(
 					"Added " + key + " " + url + "successfully");
