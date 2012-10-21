@@ -29,6 +29,7 @@ public class KeywordServlet extends HttpServlet {
 			resp.sendRedirect("http://www.google.com");
 			return;
 		}
+		query = query.toLowerCase();
 		Keyword keyword = Keyword.find(query);
 		if (keyword != null) {
 			keyword.incrementCount();
