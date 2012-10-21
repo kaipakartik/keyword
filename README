@@ -1,0 +1,11 @@
+What the fuck is keyword you might ask?
+
+The problem this is trying to solve is to have a short url customized for your needs.
+
+For example I want to access gmail but don't want to type www.gmail.com out every time
+so you assign a shortcut say 'm' to it and that takes care of it.
+The next time you want to access it all you do is hit m on your keyword site.
+
+An apt analogy is this is similar to the way you would use aliases on the unix terminal.
+
+This is the entire project for Google app engine.
